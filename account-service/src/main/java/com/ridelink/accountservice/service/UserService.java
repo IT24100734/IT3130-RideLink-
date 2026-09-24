@@ -13,10 +13,15 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(
+            UserRepository userRepository,
+            JwtService jwtService) {
+
         this.userRepository = userRepository;
         this.passwordEncoder = new BCryptPasswordEncoder();
+        this.jwtService = jwtService;
     }
 
     public User registerUser(RegisterRequest request) {
@@ -26,7 +31,7 @@ public class UserService {
         user.setName(request.getName());
         user.setEmail(request.getEmail());
 
-        // Hash the password before saving it
+        // Hash the password before saving
         String hashedPassword = passwordEncoder.encode(request.getPassword());
         user.setPassword(hashedPassword);
 
@@ -39,9 +44,13 @@ public class UserService {
     public User loginUser(LoginRequest request) {
 
         User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("Invalid email or password"));
+                .orElseThrow(() ->
+                        new RuntimeException("Invalid email or password"));
 
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(
+                request.getPassword(),
+                user.getPassword())) {
+
             throw new RuntimeException("Invalid email or password");
         }
 
@@ -50,5 +59,13 @@ public class UserService {
         }
 
         return user;
+    }
+
+    public String generateLoginToken(User user) {
+
+        return jwtService.generateToken(
+                user.getId(),
+                user.getRole()
+        );
     }
 }

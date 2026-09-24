@@ -33,11 +33,11 @@ public class AuthController {
         User registeredUser = userService.registerUser(request);
 
         UserResponse response = new UserResponse(
-            registeredUser.getId(),
-            registeredUser.getName(),
-            registeredUser.getEmail(),
-            registeredUser.getRole(),
-            registeredUser.getStatus()
+                registeredUser.getId(),
+                registeredUser.getName(),
+                registeredUser.getEmail(),
+                registeredUser.getRole(),
+                registeredUser.getStatus()
         );
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
@@ -49,11 +49,14 @@ public class AuthController {
 
         User user = userService.loginUser(request);
 
+        // Generate JWT token after successful login
+        String token = userService.generateLoginToken(user);
+
         LoginResponse response = new LoginResponse(
-            "Login successful",
-            null,
-            user.getId(),
-            user.getRole()
+                "Login successful",
+                token,
+                user.getId(),
+                user.getRole()
         );
 
         return new ResponseEntity<>(response, HttpStatus.OK);
