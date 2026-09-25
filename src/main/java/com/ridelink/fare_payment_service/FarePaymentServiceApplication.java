@@ -9,4 +9,5 @@ public class FarePaymentServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FarePaymentServiceApplication.class, args);
 	}
+
 }
