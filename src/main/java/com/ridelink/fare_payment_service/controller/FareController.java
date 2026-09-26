@@ -6,6 +6,7 @@ import com.ridelink.fare_payment_service.service.FareService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.ridelink.fare_payment_service.dto.FinalFareRequest;
 
 @RestController
 @RequestMapping("/api/fares")
@@ -23,6 +24,22 @@ public class FareController {
 
         return ResponseEntity.ok(
                 fareService.estimateFare(request)
+        );
+    }
+    @PostMapping("/final")
+    public ResponseEntity<Fare> calculateFinalFare(
+            @Valid @RequestBody FinalFareRequest request) {
+
+        return ResponseEntity.ok(
+                fareService.calculateFinalFare(request)
+        );
+    }
+    @GetMapping("/ride/{rideId}")
+    public ResponseEntity<Fare> getFare(
+            @PathVariable String rideId) {
+
+        return ResponseEntity.ok(
+                fareService.getFareByRideId(rideId)
         );
     }
 }
