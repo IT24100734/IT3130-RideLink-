@@ -35,6 +35,8 @@ public class PaymentController {
         );
     }
 
+
+
     @GetMapping("/ride/{rideId}")
     public ResponseEntity<Payment> getPaymentByRideId(
             @PathVariable String rideId) {

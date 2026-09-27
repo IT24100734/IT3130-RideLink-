@@ -1,5 +1,6 @@
 package com.ridelink.fare_payment_service.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import com.ridelink.fare_payment_service.dto.FareEstimateRequest;
 import com.ridelink.fare_payment_service.model.Fare;
 import com.ridelink.fare_payment_service.service.FareService;
@@ -17,6 +18,10 @@ public class FareController {
     public FareController(FareService fareService) {
         this.fareService = fareService;
     }
+
+    @Tag(name = "Fare API", description = "Fare estimation and final fare calculation")
+    @Tag(name = "Payment API", description = "Simulated payment processing")
+    @Tag(name = "Receipt API", description = "Receipt generation and retrieval")
 
     @PostMapping("/estimate")
     public ResponseEntity<Fare> estimateFare(
