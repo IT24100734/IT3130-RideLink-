@@ -1,0 +1,11 @@
+$kind: http-request
+url: http://localhost:8084/api/fares/final
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "rideId": "RIDE001",
+      "waitingMinutes": 5
+    }
+order: 1996806120983357

@@ -1,0 +1,11 @@
+$kind: http-request
+url: http://localhost:8084/api/fares/estimate
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "rideId": "RIDE100",
+      "distanceKm": -10
+    }
+order: 1790574325346

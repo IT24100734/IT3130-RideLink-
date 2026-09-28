@@ -1,0 +1,4 @@
+$kind: http-request
+url: http://localhost:8084/api/fares/ride/RIDE001
+method: GET
+order: 4025318864159895

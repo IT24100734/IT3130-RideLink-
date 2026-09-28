@@ -1,0 +1,4 @@
+$kind: http-request
+url: http://localhost:8084/api/payments/6ab9f408a533e1d0cfa21459
+method: GET
+order: 4479457498721471

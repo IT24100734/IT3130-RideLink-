@@ -1,0 +1,13 @@
+$kind: http-request
+url: http://localhost:8084/api/payments
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "rideId": "RIDE002",
+      "amount": 900,
+      "paymentMethod": "CARD",
+      "simulateFailure": true
+    }
+order: 4398858571709910

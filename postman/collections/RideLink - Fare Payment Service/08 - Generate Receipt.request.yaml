@@ -1,0 +1,4 @@
+$kind: http-request
+url: http://localhost:8084/api/receipts/payment/6ab9fb1823fa254004e31fe6
+method: POST
+order: 4496655022919890
